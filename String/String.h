@@ -1,3 +1,4 @@
+#include <iostream>
 #ifndef STRING_H_
 #define STRING_H_
 class String
@@ -12,7 +13,7 @@ public:
 	~String();
 	
 	//friend-func
-	
+	friend std::ostream& operator<<(std::ostream& os, const String& st);
 };
 
 #endif // !STRING_H_
