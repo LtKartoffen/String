@@ -23,7 +23,7 @@
     <ClCompile Include="String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vegnews.cpp">
+    <ClCompile Include="sayings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
