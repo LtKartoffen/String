@@ -1,5 +1,8 @@
 // sayings.cpp -- use advanced String-class
+// and using pointers to objects
 #include <iostream>
+#include <cstdlib>			// rand() and srand()
+#include <ctime>			// time()
 #include "String.h"
 const int ArSize = 10;
 const int MaxLen = 81;
@@ -34,19 +37,26 @@ int main()
 		cout << "Here are your sayings:\n";
 		for (i = 0; i < total; i++)
 			cout << sayings[i][0] << ": " << sayings[i] << endl;
-		int shortest = 0;
-		int first = 0;
+		
+		// Pointers for tracking shortest and first string
+		String* shortest = &sayings[0];
+		String* first = &sayings[0];
 		for (i = 1; i < total; i++)
 		{
-			if (sayings[i].lenght() < sayings[shortest].lenght())
-				shortest = i;
-			if (sayings[i] < sayings[first])
-				first = i;
+			if (sayings[i].lenght() < shortest->lenght())
+				shortest = &sayings[i];
+			if (sayings[i] < *first)
+				first = &sayings[i];
 		}
-		cout << "Shortest sayings:\n" << sayings[shortest] << endl;
-		cout << "First alphabetically:\n" << sayings[first] << endl;
-		cout << "This program used " << String::HowMany()
-			<< " String objects. Bye.\n";
+		cout << "Shortest sayings:\n" << *shortest << endl;
+		cout << "First alphabetically:\n" << *first << endl;
+		//cout << "This program used " << String::HowMany()
+		//	<< " String objects. Bye.\n";
+		srand(time(0));
+		int choice = rand() % total;			//choose random index
+		String* favorite = new String(sayings[choice]);
+		cout << "My favorite saying:\n" << *favorite << endl;
+		delete favorite;
 	}
 	else
 		cout << "No input. Bye.\n";
