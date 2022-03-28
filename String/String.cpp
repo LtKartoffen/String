@@ -1,5 +1,6 @@
 #include "String.h"
 #include <cstring>
+#include <cctype>
 //define _CRT_SECURE_NO_WARNINGS
 using std::cout;
 using std::cin;
@@ -87,6 +88,27 @@ const char& String::operator[](int i) const
 	return str[i];
 }
 
+void String::stringlow()
+{
+	for (int i = 0; i < len; i++)
+		str[i] = tolower(str[i]);
+}
+
+void String::stringup()
+{
+	for (int i = 0; i < len; i++)
+		str[i]= toupper(str[i]);
+}
+
+int String::repeat_symb(char symbol) const
+{
+	int count = 0;
+	for (int i = 0; i < len; i++)
+		if (str[i] == symbol)
+			count++;
+	return count;
+}
+
 // Friend funcs for refreshed operations
 bool operator<(const String& st1, const String& st2)
 {
@@ -105,6 +127,16 @@ std::ostream& operator<<(std::ostream& os, const String& st)
 {
 	os << st.str;
 	return os;
+}
+String operator+(const String& st1, const String& st2)
+{
+	//int len = st1.len + st2.len;
+	String temp;
+	temp.len = st1.len + st2.len;
+	temp.str = new char[temp.len + 1];
+	std::strcpy(temp.str, st1.str);
+	std::strcat(temp.str, st2.str);
+	return temp;
 }
 // Simple input String
 std::istream& operator>>(std::istream& is, String& st)

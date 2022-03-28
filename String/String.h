@@ -20,6 +20,9 @@ public:
 	String& operator=(const char*);
 	char& operator[](int i);
 	const char& operator[](int i) const;
+	void stringlow();
+	void stringup();
+	int repeat_symb(char symbol) const;
 
 	//friend-func
 	friend bool operator<(const String& st, const String& st2);
@@ -27,7 +30,7 @@ public:
 	friend bool operator==(const String& st, const String& st2);
 	friend std::istream& operator>>(std::istream& is, String& st);
 	friend std::ostream& operator<<(std::ostream& os, const String& st);
-
+	friend String operator+(const String& st1, const String& st2);
 	//Static-func
 	static int HowMany();
 };
